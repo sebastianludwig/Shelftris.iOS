@@ -1,0 +1,496 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9E69F360193397AA0060AC26 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E69F35F193397AA0060AC26 /* Foundation.framework */; };
+		9E69F362193397AA0060AC26 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E69F361193397AA0060AC26 /* CoreGraphics.framework */; };
+		9E69F364193397AA0060AC26 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E69F363193397AA0060AC26 /* UIKit.framework */; };
+		9E69F36A193397AA0060AC26 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E69F368193397AA0060AC26 /* InfoPlist.strings */; };
+		9E69F36C193397AA0060AC26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E69F36B193397AA0060AC26 /* main.m */; };
+		9E69F370193397AA0060AC26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E69F36F193397AA0060AC26 /* AppDelegate.m */; };
+		9E69F372193397AA0060AC26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E69F371193397AA0060AC26 /* Images.xcassets */; };
+		9E69F379193397AA0060AC26 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E69F378193397AA0060AC26 /* XCTest.framework */; };
+		9E69F37A193397AA0060AC26 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E69F35F193397AA0060AC26 /* Foundation.framework */; };
+		9E69F37B193397AA0060AC26 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E69F363193397AA0060AC26 /* UIKit.framework */; };
+		9E69F383193397AA0060AC26 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E69F381193397AA0060AC26 /* InfoPlist.strings */; };
+		9E69F385193397AA0060AC26 /* ShelftrisTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E69F384193397AA0060AC26 /* ShelftrisTests.m */; };
+		9E69F391193397EF0060AC26 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E69F38F193397EF0060AC26 /* MainViewController.m */; };
+		9E69F392193397EF0060AC26 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E69F390193397EF0060AC26 /* MainViewController.xib */; };
+		9E69F395193398BE0060AC26 /* HuePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E69F394193398BE0060AC26 /* HuePicker.m */; };
+		9E69F39A19339C400060AC26 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E69F39919339C400060AC26 /* QuartzCore.framework */; };
+		9E69F3A119339D520060AC26 /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E69F3A019339D520060AC26 /* UIColor+Additions.m */; };
+		9E69F3A41933AC500060AC26 /* SpinGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E69F3A31933AC500060AC26 /* SpinGestureRecognizer.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9E69F37C193397AA0060AC26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E69F354193397AA0060AC26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E69F35B193397AA0060AC26;
+			remoteInfo = Shelftris;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9E69F35C193397AA0060AC26 /* Shelftris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shelftris.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E69F35F193397AA0060AC26 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9E69F361193397AA0060AC26 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9E69F363193397AA0060AC26 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9E69F367193397AA0060AC26 /* Shelftris-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Shelftris-Info.plist"; sourceTree = "<group>"; };
+		9E69F369193397AA0060AC26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9E69F36B193397AA0060AC26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9E69F36D193397AA0060AC26 /* Shelftris-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shelftris-Prefix.pch"; sourceTree = "<group>"; };
+		9E69F36E193397AA0060AC26 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9E69F36F193397AA0060AC26 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9E69F371193397AA0060AC26 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9E69F377193397AA0060AC26 /* ShelftrisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShelftrisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E69F378193397AA0060AC26 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		9E69F380193397AA0060AC26 /* ShelftrisTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShelftrisTests-Info.plist"; sourceTree = "<group>"; };
+		9E69F382193397AA0060AC26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9E69F384193397AA0060AC26 /* ShelftrisTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShelftrisTests.m; sourceTree = "<group>"; };
+		9E69F38E193397EF0060AC26 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		9E69F38F193397EF0060AC26 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		9E69F390193397EF0060AC26 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		9E69F393193398BE0060AC26 /* HuePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuePicker.h; sourceTree = "<group>"; };
+		9E69F394193398BE0060AC26 /* HuePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuePicker.m; sourceTree = "<group>"; };
+		9E69F39919339C400060AC26 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9E69F39F19339D520060AC26 /* UIColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Additions.h"; sourceTree = "<group>"; };
+		9E69F3A019339D520060AC26 /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Additions.m"; sourceTree = "<group>"; };
+		9E69F3A21933AC500060AC26 /* SpinGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinGestureRecognizer.h; sourceTree = "<group>"; };
+		9E69F3A31933AC500060AC26 /* SpinGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinGestureRecognizer.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9E69F359193397AA0060AC26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E69F39A19339C400060AC26 /* QuartzCore.framework in Frameworks */,
+				9E69F362193397AA0060AC26 /* CoreGraphics.framework in Frameworks */,
+				9E69F364193397AA0060AC26 /* UIKit.framework in Frameworks */,
+				9E69F360193397AA0060AC26 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E69F374193397AA0060AC26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E69F379193397AA0060AC26 /* XCTest.framework in Frameworks */,
+				9E69F37B193397AA0060AC26 /* UIKit.framework in Frameworks */,
+				9E69F37A193397AA0060AC26 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9E69F353193397AA0060AC26 = {
+			isa = PBXGroup;
+			children = (
+				9E69F365193397AA0060AC26 /* Shelftris */,
+				9E69F37E193397AA0060AC26 /* ShelftrisTests */,
+				9E69F35E193397AA0060AC26 /* Frameworks */,
+				9E69F35D193397AA0060AC26 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9E69F35D193397AA0060AC26 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9E69F35C193397AA0060AC26 /* Shelftris.app */,
+				9E69F377193397AA0060AC26 /* ShelftrisTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9E69F35E193397AA0060AC26 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E69F39919339C400060AC26 /* QuartzCore.framework */,
+				9E69F35F193397AA0060AC26 /* Foundation.framework */,
+				9E69F361193397AA0060AC26 /* CoreGraphics.framework */,
+				9E69F363193397AA0060AC26 /* UIKit.framework */,
+				9E69F378193397AA0060AC26 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9E69F365193397AA0060AC26 /* Shelftris */ = {
+			isa = PBXGroup;
+			children = (
+				9E69F393193398BE0060AC26 /* HuePicker.h */,
+				9E69F394193398BE0060AC26 /* HuePicker.m */,
+				9E69F3A21933AC500060AC26 /* SpinGestureRecognizer.h */,
+				9E69F3A31933AC500060AC26 /* SpinGestureRecognizer.m */,
+				9E69F38E193397EF0060AC26 /* MainViewController.h */,
+				9E69F38F193397EF0060AC26 /* MainViewController.m */,
+				9E69F390193397EF0060AC26 /* MainViewController.xib */,
+				9E69F36E193397AA0060AC26 /* AppDelegate.h */,
+				9E69F36F193397AA0060AC26 /* AppDelegate.m */,
+				9E69F371193397AA0060AC26 /* Images.xcassets */,
+				9E69F366193397AA0060AC26 /* Supporting Files */,
+				9E69F39F19339D520060AC26 /* UIColor+Additions.h */,
+				9E69F3A019339D520060AC26 /* UIColor+Additions.m */,
+			);
+			path = Shelftris;
+			sourceTree = "<group>";
+		};
+		9E69F366193397AA0060AC26 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9E69F367193397AA0060AC26 /* Shelftris-Info.plist */,
+				9E69F368193397AA0060AC26 /* InfoPlist.strings */,
+				9E69F36B193397AA0060AC26 /* main.m */,
+				9E69F36D193397AA0060AC26 /* Shelftris-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9E69F37E193397AA0060AC26 /* ShelftrisTests */ = {
+			isa = PBXGroup;
+			children = (
+				9E69F384193397AA0060AC26 /* ShelftrisTests.m */,
+				9E69F37F193397AA0060AC26 /* Supporting Files */,
+			);
+			path = ShelftrisTests;
+			sourceTree = "<group>";
+		};
+		9E69F37F193397AA0060AC26 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9E69F380193397AA0060AC26 /* ShelftrisTests-Info.plist */,
+				9E69F381193397AA0060AC26 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9E69F35B193397AA0060AC26 /* Shelftris */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E69F388193397AA0060AC26 /* Build configuration list for PBXNativeTarget "Shelftris" */;
+			buildPhases = (
+				9E69F358193397AA0060AC26 /* Sources */,
+				9E69F359193397AA0060AC26 /* Frameworks */,
+				9E69F35A193397AA0060AC26 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Shelftris;
+			productName = Shelftris;
+			productReference = 9E69F35C193397AA0060AC26 /* Shelftris.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9E69F376193397AA0060AC26 /* ShelftrisTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E69F38B193397AA0060AC26 /* Build configuration list for PBXNativeTarget "ShelftrisTests" */;
+			buildPhases = (
+				9E69F373193397AA0060AC26 /* Sources */,
+				9E69F374193397AA0060AC26 /* Frameworks */,
+				9E69F375193397AA0060AC26 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9E69F37D193397AA0060AC26 /* PBXTargetDependency */,
+			);
+			name = ShelftrisTests;
+			productName = ShelftrisTests;
+			productReference = 9E69F377193397AA0060AC26 /* ShelftrisTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9E69F354193397AA0060AC26 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Sebastian Ludwig";
+				TargetAttributes = {
+					9E69F376193397AA0060AC26 = {
+						TestTargetID = 9E69F35B193397AA0060AC26;
+					};
+				};
+			};
+			buildConfigurationList = 9E69F357193397AA0060AC26 /* Build configuration list for PBXProject "Shelftris" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9E69F353193397AA0060AC26;
+			productRefGroup = 9E69F35D193397AA0060AC26 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9E69F35B193397AA0060AC26 /* Shelftris */,
+				9E69F376193397AA0060AC26 /* ShelftrisTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9E69F35A193397AA0060AC26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E69F36A193397AA0060AC26 /* InfoPlist.strings in Resources */,
+				9E69F392193397EF0060AC26 /* MainViewController.xib in Resources */,
+				9E69F372193397AA0060AC26 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E69F375193397AA0060AC26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E69F383193397AA0060AC26 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9E69F358193397AA0060AC26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E69F370193397AA0060AC26 /* AppDelegate.m in Sources */,
+				9E69F391193397EF0060AC26 /* MainViewController.m in Sources */,
+				9E69F3A119339D520060AC26 /* UIColor+Additions.m in Sources */,
+				9E69F36C193397AA0060AC26 /* main.m in Sources */,
+				9E69F395193398BE0060AC26 /* HuePicker.m in Sources */,
+				9E69F3A41933AC500060AC26 /* SpinGestureRecognizer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E69F373193397AA0060AC26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E69F385193397AA0060AC26 /* ShelftrisTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9E69F37D193397AA0060AC26 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E69F35B193397AA0060AC26 /* Shelftris */;
+			targetProxy = 9E69F37C193397AA0060AC26 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9E69F368193397AA0060AC26 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E69F369193397AA0060AC26 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9E69F381193397AA0060AC26 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E69F382193397AA0060AC26 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9E69F386193397AA0060AC26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Debug;
+		};
+		9E69F387193397AA0060AC26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7s,
+					armv7,
+				);
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
+			};
+			name = Release;
+		};
+		9E69F389193397AA0060AC26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shelftris/Shelftris-Prefix.pch";
+				INFOPLIST_FILE = "Shelftris/Shelftris-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9E69F38A193397AA0060AC26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shelftris/Shelftris-Prefix.pch";
+				INFOPLIST_FILE = "Shelftris/Shelftris-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		9E69F38C193397AA0060AC26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Shelftris.app/Shelftris";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shelftris/Shelftris-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ShelftrisTests/ShelftrisTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		9E69F38D193397AA0060AC26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Shelftris.app/Shelftris";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shelftris/Shelftris-Prefix.pch";
+				INFOPLIST_FILE = "ShelftrisTests/ShelftrisTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9E69F357193397AA0060AC26 /* Build configuration list for PBXProject "Shelftris" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E69F386193397AA0060AC26 /* Debug */,
+				9E69F387193397AA0060AC26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E69F388193397AA0060AC26 /* Build configuration list for PBXNativeTarget "Shelftris" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E69F389193397AA0060AC26 /* Debug */,
+				9E69F38A193397AA0060AC26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E69F38B193397AA0060AC26 /* Build configuration list for PBXNativeTarget "ShelftrisTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E69F38C193397AA0060AC26 /* Debug */,
+				9E69F38D193397AA0060AC26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9E69F354193397AA0060AC26 /* Project object */;
+}
