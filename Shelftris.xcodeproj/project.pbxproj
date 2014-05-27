@@ -25,6 +25,7 @@
 		9E69F39A19339C400060AC26 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E69F39919339C400060AC26 /* QuartzCore.framework */; };
 		9E69F3A119339D520060AC26 /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E69F3A019339D520060AC26 /* UIColor+Additions.m */; };
 		9E69F3A41933AC500060AC26 /* SpinGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E69F3A31933AC500060AC26 /* SpinGestureRecognizer.m */; };
+		9E69F3A7193499870060AC26 /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E69F3A6193499870060AC26 /* Brick.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		9E69F3A019339D520060AC26 /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Additions.m"; sourceTree = "<group>"; };
 		9E69F3A21933AC500060AC26 /* SpinGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpinGestureRecognizer.h; sourceTree = "<group>"; };
 		9E69F3A31933AC500060AC26 /* SpinGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpinGestureRecognizer.m; sourceTree = "<group>"; };
+		9E69F3A5193499870060AC26 /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
+		9E69F3A6193499870060AC26 /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,8 @@
 		9E69F365193397AA0060AC26 /* Shelftris */ = {
 			isa = PBXGroup;
 			children = (
+				9E69F3A5193499870060AC26 /* Brick.h */,
+				9E69F3A6193499870060AC26 /* Brick.m */,
 				9E69F393193398BE0060AC26 /* HuePicker.h */,
 				9E69F394193398BE0060AC26 /* HuePicker.m */,
 				9E69F3A21933AC500060AC26 /* SpinGestureRecognizer.h */,
@@ -268,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E69F370193397AA0060AC26 /* AppDelegate.m in Sources */,
+				9E69F3A7193499870060AC26 /* Brick.m in Sources */,
 				9E69F391193397EF0060AC26 /* MainViewController.m in Sources */,
 				9E69F3A119339D520060AC26 /* UIColor+Additions.m in Sources */,
 				9E69F36C193397AA0060AC26 /* main.m in Sources */,

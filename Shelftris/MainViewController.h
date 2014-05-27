@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Sebastian Ludwig. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "HuePicker.h"
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController<HuePickerDelegate, UIScrollViewDelegate>
 
 @end

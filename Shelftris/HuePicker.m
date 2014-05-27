@@ -53,15 +53,15 @@
 	CGFloat internalRadius = maxRadius - self.donutThickness + 2;
 	CGPoint center = CGPointMake(floorf(0.5 + CGRectGetMidX(frame)), floorf(0.5 + CGRectGetMidY(frame)));
 	
-	CGMutablePathRef path = CGPathCreateMutable();
-	
 	CGContextRef context = UIGraphicsGetCurrentContext();
+	
+	CGMutablePathRef path = CGPathCreateMutable();
 	CGContextSaveGState(context);
 	{
 		// the donut is reduced by 1 at both diameters because to clip op includes the path thickness
-		CGPathAddRelativeArc(path, &CGAffineTransformIdentity, center.x, center.y, maxRadius - 1, 0, 2 * M_PI);
-		CGPathMoveToPoint(path, &CGAffineTransformIdentity, center.x + internalRadius, center.y);
-		CGPathAddRelativeArc(path, &CGAffineTransformIdentity, center.x, center.y, internalRadius + 1, 0, 2 * M_PI);
+		CGPathAddRelativeArc(path, NULL, center.x, center.y, maxRadius - 1, 0, 2 * M_PI);
+		CGPathMoveToPoint(path, NULL, center.x + internalRadius, center.y);
+		CGPathAddRelativeArc(path, NULL, center.x, center.y, internalRadius + 1, 0, 2 * M_PI);
 		
 		CGContextAddPath(context, path);
 		CGPathRelease(path);
@@ -76,9 +76,9 @@
 	CGContextSetLineWidth(context, 2);
 	
 	path = CGPathCreateMutable();
-	CGPathAddRelativeArc(path, &CGAffineTransformIdentity, center.x, center.y, maxRadius, 0, 2 * M_PI);
-	CGPathMoveToPoint(path, &CGAffineTransformIdentity, center.x + internalRadius, center.y);
-	CGPathAddRelativeArc(path, &CGAffineTransformIdentity, center.x, center.y, internalRadius, 0, 2 * M_PI);
+	CGPathAddRelativeArc(path, NULL, center.x, center.y, maxRadius, 0, 2 * M_PI);
+	CGPathMoveToPoint(path, NULL, center.x + internalRadius, center.y);
+	CGPathAddRelativeArc(path, NULL, center.x, center.y, internalRadius, 0, 2 * M_PI);
 	CGContextAddPath(context, path);
 	CGContextStrokePath(context);
 	CGPathRelease(path);
@@ -148,6 +148,7 @@
 {
 	_rotationAngle = rotationAngle;
 	[self setNeedsDisplay];
+	[self.delegate huePicker:self didSelectHue:self.hue];
 }
 
 - (void)setHue:(CGFloat)hue
