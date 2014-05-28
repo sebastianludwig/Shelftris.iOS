@@ -10,7 +10,6 @@
 
 @implementation Brick
 {
-	BrickShape shape;
 	NSDictionary* patterns;
 }
 
@@ -20,7 +19,7 @@
     if (self) {
 		self.backgroundColor = [UIColor clearColor];
 		self.color = [UIColor whiteColor];
-        shape = brickShape;
+        _shape = brickShape;
 		
 		patterns = @{
 					 @(BrickShapeT): @[@[@YES, @NO], @[@YES, @YES], @[@YES, @NO]],
@@ -35,20 +34,51 @@
     return self;
 }
 
+- (void)rotateClockwise
+{
+	[self setRotation:(self.rotation + 1) animated:YES];
+}
+
+#pragma properties
+
 - (void)setColor:(UIColor *)color
 {
 	_color = color;
 	[self setNeedsDisplay];
 }
 
+- (void)setRotation:(int)rotation
+{
+	[self setRotation:rotation animated:NO];
+}
+
+- (void)setRotation:(int)rotation animated:(BOOL)animated
+{
+	_rotation = rotation % 4;
+	
+	if (animated) {
+		[UIView animateWithDuration:0.2
+							  delay:0
+							options:UIViewAnimationOptionCurveEaseInOut
+						 animations:^{
+							 self.transform = CGAffineTransformMakeRotation(_rotation * M_PI_2);
+						 } completion:^(BOOL finished) {
+						 }];
+	} else {
+		self.transform = CGAffineTransformMakeRotation(_rotation * M_PI_2);
+	}
+}
+
+#pragma mark drawing
+
 - (int)widthOfShape
 {
-	return [patterns[@(shape)] count] * [self maxSquareSize];
+	return [patterns[@(self.shape)] count] * [self maxSquareSize];
 }
 
 - (int)heightOfShape
 {
-	return [patterns[@(shape)][0] count] * [self maxSquareSize];
+	return [patterns[@(self.shape)][0] count] * [self maxSquareSize];
 }
 
 - (CGFloat)maxSquareSize
@@ -66,9 +96,9 @@
 	
 	CGFloat squareSize = [self maxSquareSize];
 	CGContextRef context = UIGraphicsGetCurrentContext();
-	for (int xIndex = 0; xIndex < [patterns[@(shape)] count]; ++xIndex) {
-		for (int yIndex = 0; yIndex < [patterns[@(shape)][0] count]; ++yIndex) {
-			if (![patterns[@(shape)][xIndex][yIndex] boolValue]) {
+	for (int xIndex = 0; xIndex < [patterns[@(self.shape)] count]; ++xIndex) {
+		for (int yIndex = 0; yIndex < [patterns[@(self.shape)][0] count]; ++yIndex) {
+			if (![patterns[@(self.shape)][xIndex][yIndex] boolValue]) {
 				continue;
 			}
 			

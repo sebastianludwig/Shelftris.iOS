@@ -16,6 +16,8 @@
 	
 	IBOutlet HuePicker *huePicker;
 	IBOutlet UIScrollView *brickScrollView;
+	
+	IBOutlet UILongPressGestureRecognizer* longPressGuestureRecognizer;
 }
 
 - (void)viewDidLoad
@@ -28,24 +30,96 @@
 	
 	brickScrollView.contentSize = CGSizeMake(0, 0);
 	bricks = [[NSMutableArray alloc] init];
-	[self addBrickViewForShape:BrickShapeS];
+	[self addBrickWithShape:BrickShapeS];
 	for (int i = BrickShapeT; i <= BrickShapeS; ++i) {
-		[self addBrickViewForShape:i];
+		[self addBrickWithShape:i];
 	}
-	[self addBrickViewForShape:BrickShapeT];
+	[self addBrickWithShape:BrickShapeT];
 	brickScrollView.contentOffset = CGPointMake([bricks[0] size].width, 0);
 	
 	self.view.backgroundColor = [UIColor blackColor];
 }
 
-- (void)addBrickViewForShape:(BrickShape)shape
+- (Brick *)addBrickWithShape:(BrickShape)shape
 {
-	CGRect frame = CGRectMake(brickScrollView.contentSize.width, 0, brickScrollView.frame.size.width, brickScrollView.frame.size.height);
+	return [self addBrickWithShape:shape origin:CGPointMake(brickScrollView.contentSize.width, 0)];
+}
+
+- (Brick *)addBrickWithShape:(BrickShape)shape origin:(CGPoint)origin
+{
+	CGRect frame = CGRectMake(origin.x, origin.y, brickScrollView.frame.size.width, brickScrollView.frame.size.height);
 	Brick *brick = [[Brick alloc] initWithFrame:frame shape:shape];
+	brick.layer.anchorPoint = CGPointMake(0.5, 0.5);
 	brick.color = huePicker.color;
+	
+	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:brick action:@selector(rotateClockwise)];
+	[brick addGestureRecognizer:tapRecognizer];
+	
+	UILongPressGestureRecognizer *dragRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(dragBrick:)];
+	dragRecognizer.minimumPressDuration = 0.3;
+	[brick addGestureRecognizer:dragRecognizer];
+	
 	[brickScrollView addSubview:brick];
 	[bricks addObject:brick];
-	brickScrollView.contentSize = CGSizeMake(CGRectGetMaxX(brick.frame), brickScrollView.frame.size.height);
+	
+	[bricks sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+		return [@([obj1 frame].origin.x) compare:@([obj2 frame].origin.x)];
+	}];
+	
+	CGFloat maxX = -1;
+	for (UIView *subview in brickScrollView.subviews) {
+		maxX = MAX(maxX, CGRectGetMaxX(subview.frame));
+	}
+	brickScrollView.contentSize = CGSizeMake(maxX, brickScrollView.frame.size.height);
+	return brick;
+}
+
+- (int)currentBrickIndex
+{
+	return brickScrollView.contentOffset.x / brickScrollView.frame.size.width;
+}
+
+- (void)dragBrick:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+	if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+		Brick* pickedBrick = bricks[[self currentBrickIndex]];
+		[bricks removeObject:pickedBrick];
+		
+		Brick* replacementBrick = [self addBrickWithShape:pickedBrick.shape origin:pickedBrick.frame.origin];
+		replacementBrick.hidden = YES;
+		
+		pickedBrick.frame = brickScrollView.frame;
+		[self.view addSubview:pickedBrick];
+		
+		CGFloat squareSize = 20;	// TODO get this from Shelf view
+		
+		[UIView animateWithDuration:0.5
+							  delay:0
+							options:UIViewAnimationOptionCurveEaseInOut
+						 animations:^{
+							 CGPoint center = [gestureRecognizer locationInView:self.view];
+							 CGRect frame = pickedBrick.frame;
+							 frame.size.width = squareSize * 4;
+							 frame.size.height = squareSize * 4;
+							 frame.origin.x = center.x - frame.size.width / 2;
+							 frame.origin.y = center.y - frame.size.height / 2;
+							 pickedBrick.frame = frame;
+						 }
+						 completion:^(BOOL finished) {
+						 }];
+	} else if (gestureRecognizer.state == UIGestureRecognizerStateChanged) {
+		CGPoint location = [gestureRecognizer locationInView:self.view];
+		gestureRecognizer.view.center = location;
+	} else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+		for (Brick *brick in bricks) {
+			brick.hidden = NO;
+		}
+		//[gestureRecognizer.view removeFromSuperview];
+	}
+	
+	if (longPressGuestureRecognizer.state != UIGestureRecognizerStateBegan) {
+		return;
+	}
 }
 
 #pragma mark -
@@ -63,11 +137,11 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-	int index = scrollView.contentOffset.x / brickScrollView.frame.size.width;
-	if (index == bricks.count - 1) {
+	int brickIndex = [self currentBrickIndex];
+	if (brickIndex == bricks.count - 1) {		// last -> jump to second
 		CGPoint offset = CGPointMake(brickScrollView.frame.size.width, 0);
 		[scrollView setContentOffset:offset animated:NO];
-	} else if (index == 0) {
+	} else if (brickIndex == 0) {				// first -> jump to second last
 		CGPoint offset = CGPointMake(brickScrollView.contentSize.width - 2 * brickScrollView.frame.size.width, 0);
 		[scrollView setContentOffset:offset animated:NO];
 	}

@@ -8,6 +8,6 @@
 
 #import "HuePicker.h"
 
-@interface MainViewController : UIViewController<HuePickerDelegate, UIScrollViewDelegate>
+@interface MainViewController : UIViewController<HuePickerDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @end

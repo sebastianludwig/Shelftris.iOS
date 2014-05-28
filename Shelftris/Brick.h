@@ -18,9 +18,12 @@ typedef enum {
 
 @interface Brick : UIView
 
+@property (nonatomic, readonly) BrickShape shape;
 @property (nonatomic) UIEdgeInsets insets;
 @property (nonatomic) UIColor* color;
+@property (nonatomic) int rotation;
 
 - (id)initWithFrame:(CGRect)frame shape:(BrickShape)brickShape;
+- (void)rotateClockwise;
 
 @end
