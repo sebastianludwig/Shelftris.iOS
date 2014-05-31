@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -28,6 +28,7 @@
                     <gestureRecognizers/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="Ax1-Ng-uTv"/>
+                        <outletCollection property="gestureRecognizers" destination="Uuh-LQ-htf" appends="YES" id="ih3-pK-POZ"/>
                     </connections>
                 </scrollView>
                 <view contentMode="scaleToFill" id="yr5-h4-sen">
@@ -39,5 +40,10 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
+        <tapGestureRecognizer id="Uuh-LQ-htf">
+            <connections>
+                <action selector="rotateBrick:" destination="-1" id="R92-qL-hsx"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

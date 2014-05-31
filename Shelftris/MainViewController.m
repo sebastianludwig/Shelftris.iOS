@@ -36,7 +36,7 @@
 		[self addBrickWithShape:i];
 	}
 	[self addBrickWithShape:BrickShapeT];
-	brickScrollView.contentOffset = CGPointMake([bricks[0] size].width, 0);
+	brickScrollView.contentOffset = CGPointMake(brickScrollView.frame.size.width, 0);
 	
 	shelf = [[Shelf alloc] initWithFrame:shelfContainer.bounds columns:2 rows:4];
 	[shelfContainer addSubview:shelf];
@@ -53,9 +53,6 @@
 	Brick *brick = [[Brick alloc] initWithFrame:frame shape:shape];
 	brick.layer.anchorPoint = CGPointMake(0.5, 0.5);
 	brick.color = huePicker.color;
-	
-	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:brick action:@selector(rotateClockwise)];
-	[brick addGestureRecognizer:tapRecognizer];
 	
 	UILongPressGestureRecognizer *dragRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(dragBrick:)];
 	dragRecognizer.minimumPressDuration = 0.3;
@@ -81,6 +78,21 @@
 	return brickScrollView.contentOffset.x / brickScrollView.frame.size.width;
 }
 
+- (IBAction)rotateBrick:(UITapGestureRecognizer *)gestureRecognizer
+{
+	int brickIndex = [self currentBrickIndex];
+	Brick* pickedBrick = bricks[brickIndex];
+	[pickedBrick rotateClockwise];
+	
+	if (brickIndex == 1) {		// last -> jump to second
+		Brick* duplicate = bricks.lastObject;
+		duplicate.rotation = pickedBrick.rotation;
+	} else if (brickIndex == bricks.count - 2) {				// first -> jump to second last
+		Brick* duplicate = bricks[0];
+		duplicate.rotation = pickedBrick.rotation;
+	}
+}
+
 - (void)dragBrick:(UILongPressGestureRecognizer *)gestureRecognizer
 {
 	if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
@@ -100,7 +112,7 @@
 		
 		[UIView animateWithDuration:0.5
 							  delay:0
-							options:UIViewAnimationOptionCurveEaseInOut
+							options:UIViewAnimationOptionCurveEaseOut
 						 animations:^{
 							 CGPoint center = [gestureRecognizer locationInView:self.view];
 							 CGRect frame = pickedBrick.frame;

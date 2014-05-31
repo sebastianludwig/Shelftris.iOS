@@ -12,6 +12,7 @@
 @implementation Brick
 {
 	NSDictionary* patterns;
+	NSArray* pattern;
 }
 
 - (id)initWithFrame:(CGRect)frame shape:(BrickShape)brickShape
@@ -23,14 +24,44 @@
         _shape = brickShape;
 		
 		patterns = @{
-					 @(BrickShapeT): @[@[@YES, @NO], @[@YES, @YES], @[@YES, @NO]],
-					 @(BrickShapeO): @[@[@YES, @YES], @[@YES, @YES]],
-					 @(BrickShapeI): @[@[@YES, @YES, @YES, @YES]],
-					 @(BrickShapeJ): @[@[@YES, @NO, @NO], @[@YES, @YES, @YES]],
-					 @(BrickShapeL): @[@[@YES, @YES, @YES], @[@NO, @NO, @YES]],
-					 @(BrickShapeZ): @[@[@YES, @NO], @[@YES, @YES], @[@NO, @YES]],
-					 @(BrickShapeS): @[@[@NO, @YES], @[@YES, @YES], @[@YES, @NO]]
-					};
+					 @0: @{
+							 @(BrickShapeT): @[@[@YES, @NO], @[@YES, @YES], @[@YES, @NO]],
+							 @(BrickShapeO): @[@[@YES, @YES], @[@YES, @YES]],
+							 @(BrickShapeI): @[@[@YES, @YES, @YES, @YES]],
+							 @(BrickShapeJ): @[@[@NO, @NO, @YES], @[@YES, @YES, @YES]],
+							 @(BrickShapeL): @[@[@YES, @YES, @YES], @[@NO, @NO, @YES]],
+							 @(BrickShapeZ): @[@[@YES, @NO], @[@YES, @YES], @[@NO, @YES]],
+							 @(BrickShapeS): @[@[@NO, @YES], @[@YES, @YES], @[@YES, @NO]]
+							 },
+					 @1: @{
+							 @(BrickShapeT): @[@[@NO, @YES, @NO], @[@YES, @YES, @YES]],
+							 @(BrickShapeO): @[@[@YES, @YES], @[@YES, @YES]],
+							 @(BrickShapeI): @[@[@YES], @[@YES], @[@YES], @[@YES]],
+							 @(BrickShapeJ): @[@[@YES, @YES], @[@NO, @YES], @[@NO, @YES]],
+							 @(BrickShapeL): @[@[@YES, @YES], @[@YES, @NO], @[@YES, @NO]],
+							 @(BrickShapeZ): @[@[@NO, @YES, @YES], @[@YES, @YES, @NO]],
+							 @(BrickShapeS): @[@[@YES, @YES, @NO], @[@NO, @YES, @YES]]
+							 },
+					 @2: @{
+							 @(BrickShapeT): @[@[@NO, @YES], @[@YES, @YES], @[@NO, @YES]],
+							 @(BrickShapeO): @[@[@YES, @YES], @[@YES, @YES]],
+							 @(BrickShapeI): @[@[@YES, @YES, @YES, @YES]],
+							 @(BrickShapeJ): @[@[@YES, @YES, @YES], @[@YES, @NO, @NO]],
+							 @(BrickShapeL): @[@[@YES, @NO, @NO], @[@YES, @YES, @YES]],
+							 @(BrickShapeZ): @[@[@YES, @NO], @[@YES, @YES], @[@NO, @YES]],
+							 @(BrickShapeS): @[@[@NO, @YES], @[@YES, @YES], @[@YES, @NO]]
+							 },
+					 @3: @{
+							 @(BrickShapeT): @[@[@YES, @YES, @YES], @[@NO, @YES, @NO]],
+							 @(BrickShapeO): @[@[@YES, @YES], @[@YES, @YES]],
+							 @(BrickShapeI): @[@[@YES], @[@YES], @[@YES], @[@YES]],
+							 @(BrickShapeJ): @[@[@YES, @NO], @[@YES, @NO], @[@YES, @YES]],
+							 @(BrickShapeL): @[@[@NO, @YES], @[@NO, @YES], @[@YES, @YES]],
+							 @(BrickShapeZ): @[@[@NO, @YES, @YES], @[@YES, @YES, @NO]],
+							 @(BrickShapeS): @[@[@YES, @YES, @NO], @[@NO, @YES, @YES]]
+							 }
+					 };
+		pattern = patterns[@0][@(_shape)];
     }
     return self;
 }
@@ -55,6 +86,7 @@
 
 - (void)setRotation:(int)rotation animated:(BOOL)animated
 {
+	int oldRotation = _rotation;
 	_rotation = rotation % 4;
 	
 	if (animated) {
@@ -62,11 +94,15 @@
 							  delay:0
 							options:UIViewAnimationOptionCurveEaseInOut
 						 animations:^{
-							 self.transform = CGAffineTransformMakeRotation(_rotation * M_PI_2);
+							 self.transform = CGAffineTransformMakeRotation((_rotation - oldRotation) * M_PI_2);
 						 } completion:^(BOOL finished) {
+							 self.transform = CGAffineTransformIdentity;
+							 pattern = patterns[@(_rotation)][@(_shape)];
+							 [self setNeedsDisplay];
 						 }];
 	} else {
-		self.transform = CGAffineTransformMakeRotation(_rotation * M_PI_2);
+		pattern = patterns[@(_rotation)][@(_shape)];
+		[self setNeedsDisplay];
 	}
 }
 
@@ -74,12 +110,12 @@
 
 - (int)widthOfShape
 {
-	return [patterns[@(self.shape)] count] * [self maxSquareSize];
+	return [pattern count] * [self maxSquareSize];
 }
 
 - (int)heightOfShape
 {
-	return [patterns[@(self.shape)][0] count] * [self maxSquareSize];
+	return [pattern[0] count] * [self maxSquareSize];
 }
 
 - (CGFloat)maxSquareSize
@@ -97,9 +133,9 @@
 	
 	CGFloat squareSize = [self maxSquareSize];
 	CGContextRef context = UIGraphicsGetCurrentContext();
-	for (int xIndex = 0; xIndex < [patterns[@(self.shape)] count]; ++xIndex) {
-		for (int yIndex = 0; yIndex < [patterns[@(self.shape)][0] count]; ++yIndex) {
-			if (![patterns[@(self.shape)][xIndex][yIndex] boolValue]) {
+	for (int xIndex = 0; xIndex < [pattern count]; ++xIndex) {
+		for (int yIndex = 0; yIndex < [pattern[0] count]; ++yIndex) {
+			if (![pattern[xIndex][yIndex] boolValue]) {
 				continue;
 			}
 			
