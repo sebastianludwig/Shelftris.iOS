@@ -105,14 +105,15 @@
 		}
 		
 		Brick* replacementBrick = [self addBrickWithShape:pickedBrick.shape origin:pickedBrick.frame.origin];
+		replacementBrick.rotation = pickedBrick.rotation;
 		replacementBrick.hidden = YES;
 		
 		pickedBrick.frame = brickScrollView.frame;
 		[self.view addSubview:pickedBrick];
 		
-		[UIView animateWithDuration:0.5
+		[UIView animateWithDuration:0.3
 							  delay:0
-							options:UIViewAnimationOptionCurveEaseOut
+							options:UIViewAnimationOptionCurveLinear
 						 animations:^{
 							 CGPoint center = [gestureRecognizer locationInView:self.view];
 							 CGRect frame = pickedBrick.frame;
@@ -128,10 +129,27 @@
 		CGPoint location = [gestureRecognizer locationInView:self.view];
 		gestureRecognizer.view.center = location;
 	} else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-		for (Brick *brick in bricks) {
-			brick.hidden = NO;
+		if ([shelf dropBrick:(Brick *)gestureRecognizer.view]) {
+			[gestureRecognizer.view removeFromSuperview];
+			
+			for (Brick *brick in bricks) {
+				brick.hidden = NO;
+			}
+		} else {
+			[UIView animateWithDuration:0.3
+								  delay:0
+								options:UIViewAnimationOptionCurveEaseOut
+							 animations:^{
+								 gestureRecognizer.view.frame = brickScrollView.frame;
+							 }
+							 completion:^(BOOL finished) {
+								 [gestureRecognizer.view removeFromSuperview];
+								 
+								 for (Brick *brick in bricks) {
+									 brick.hidden = NO;
+								 }
+							 }];
 		}
-		//[gestureRecognizer.view removeFromSuperview];
 	}
 }
 

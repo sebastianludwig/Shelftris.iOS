@@ -106,42 +106,56 @@
 	}
 }
 
-#pragma mark drawing
-
-- (int)widthOfShape
+- (NSArray *)squareOriginsInView:(UIView *)view
 {
-	return [pattern count] * [self maxSquareSize];
-}
-
-- (int)heightOfShape
-{
-	return [pattern[0] count] * [self maxSquareSize];
-}
-
-- (CGFloat)maxSquareSize
-{
-	return MIN(self.bounds.size.width, self.bounds.size.height) / 4;
-}
-
-- (void)drawRect:(CGRect)rect
-{
-	[super drawRect:rect];
+	NSMutableArray *squareOrigins = [NSMutableArray array];
 	
 	CGRect contentSize = UIEdgeInsetsInsetRect(self.bounds, self.insets);
-	
 	CGPoint origin = CGPointMake((contentSize.size.width - [self widthOfShape]) / 2.0 , (contentSize.size.height - [self heightOfShape]) / 2.0);
 	
-	CGFloat squareSize = [self maxSquareSize];
-	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGFloat squareSize = [self squareSize];
 	for (int xIndex = 0; xIndex < [pattern count]; ++xIndex) {
 		for (int yIndex = 0; yIndex < [pattern[0] count]; ++yIndex) {
 			if (![pattern[xIndex][yIndex] boolValue]) {
 				continue;
 			}
 			
-			CGRect squareRect = CGRectMake(origin.x + xIndex * squareSize, origin.y + yIndex * squareSize, squareSize, squareSize);
-			[Square drawSqureInRect:squareRect withBaseColor:self.color inContext:context];
+			CGPoint squareOrigin = CGPointMake(origin.x + xIndex * squareSize, origin.y + yIndex * squareSize);
+			squareOrigin = [self convertPoint:squareOrigin toView:view];
+			[squareOrigins addObject:[NSValue valueWithCGPoint:squareOrigin]];
 		}
+	}
+	
+	return squareOrigins;
+}
+
+- (CGFloat)squareSize
+{
+	return MIN(self.bounds.size.width, self.bounds.size.height) / 4;
+}
+
+#pragma mark drawing
+
+- (int)widthOfShape
+{
+	return [pattern count] * [self squareSize];
+}
+
+- (int)heightOfShape
+{
+	return [pattern[0] count] * [self squareSize];
+}
+
+- (void)drawRect:(CGRect)rect
+{
+	[super drawRect:rect];
+	
+	CGFloat squareSize = [self squareSize];
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	for (NSValue *originWrapper in [self squareOriginsInView:self]) {
+		CGPoint origin = [originWrapper CGPointValue];
+		CGRect squareRect = CGRectMake(origin.x, origin.y, squareSize, squareSize);
+		[Square drawSqureInRect:squareRect withBaseColor:self.color inContext:context];
 	}
 }
 

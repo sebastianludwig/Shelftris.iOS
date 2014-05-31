@@ -32,6 +32,12 @@
 	[self setNeedsDisplay];
 }
 
+- (void)setBaseColor:(UIColor *)baseColor
+{
+	_baseColor = baseColor;
+	[self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect
 {
 	[super drawRect:rect];

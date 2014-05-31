@@ -26,4 +26,7 @@ typedef enum {
 - (id)initWithFrame:(CGRect)frame shape:(BrickShape)brickShape;
 - (void)rotateClockwise;
 
+- (CGFloat)squareSize;
+- (NSArray *)squareOriginsInView:(UIView *)view;
+
 @end

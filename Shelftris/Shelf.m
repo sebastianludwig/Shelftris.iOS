@@ -67,6 +67,30 @@
     return self;
 }
 
+- (BOOL)dropBrick:(Brick *)brick
+{
+	BOOL couldPlaceSquare = NO;
+	for (NSValue *originWrapper in [brick squareOriginsInView:self]) {
+		CGPoint brickSquareOrigin = [originWrapper CGPointValue];
+		
+		for (int column = 0; column < [squares count]; ++column) {
+			for (int row = 0; row < [squares[0] count]; ++row) {
+				Square *shelfSquare = squares[column][row];
+				float dX = shelfSquare.frame.origin.x - brickSquareOrigin.x;
+				float dY = shelfSquare.frame.origin.y - brickSquareOrigin.y;
+				float distanceSquare = dX * dX + dY * dY;
+				if (distanceSquare < 100) {
+					NSLog(@"setting color for %@", shelfSquare);
+					shelfSquare.baseColor = [brick.color colorWithAlphaComponent:inactiveSquareAlpha];
+					couldPlaceSquare = YES;
+				}
+			}
+		}
+	}
+	
+	return couldPlaceSquare;
+}
+
 #pragma mark Gesture recognition / de-/activation
 
 - (void)setSquareInColumn:(int)column row:(int)row active:(BOOL)active
