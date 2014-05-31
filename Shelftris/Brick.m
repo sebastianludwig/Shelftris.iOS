@@ -7,6 +7,7 @@
 //
 
 #import "Brick.h"
+#import "Square.h"
 
 @implementation Brick
 {
@@ -103,48 +104,9 @@
 			}
 			
 			CGRect squareRect = CGRectMake(origin.x + xIndex * squareSize, origin.y + yIndex * squareSize, squareSize, squareSize);
-			[self drawSqureInRect:squareRect withBaseColor:self.color inContext:context];
+			[Square drawSqureInRect:squareRect withBaseColor:self.color inContext:context];
 		}
 	}
-}
-
-- (void)drawSqureInRect:(CGRect)rect withBaseColor:(UIColor *)baseColor inContext:(CGContextRef)context
-{
-	CGFloat baseHue, baseSaturation, baseBrightness;
-	if (![baseColor getHue:&baseHue saturation:&baseSaturation brightness:&baseBrightness alpha:nil]) {
-		return;
-	}
-	UIColor *sideColor = [UIColor colorWithHue:baseHue saturation:baseSaturation brightness:(baseBrightness - 0.1) alpha:1];
-	CGContextSetFillColorWithColor(context, [sideColor CGColor]);
-	CGContextFillRect(context, rect);
-	
-	CGMutablePathRef path = CGPathCreateMutable();
-	CGContextSaveGState(context);
-	{
-		CGPathMoveToPoint(path, NULL, rect.origin.x, rect.origin.y);
-		CGPathAddLineToPoint(path, NULL, CGRectGetMidX(rect), CGRectGetMidY(rect));
-		CGPathAddLineToPoint(path, NULL, CGRectGetMaxX(rect), rect.origin.y);
-		CGContextAddPath(context, path);
-		UIColor *topColor = [UIColor colorWithHue:baseHue saturation:(baseSaturation - 0.4) brightness:baseBrightness alpha:1];
-		CGContextSetFillColorWithColor(context, [topColor CGColor]);
-		CGContextFillPath(context);
-	}
-	CGContextRestoreGState(context);
-	
-	path = CGPathCreateMutable();
-	CGPathMoveToPoint(path, NULL, rect.origin.x, CGRectGetMaxY(rect));
-	CGPathAddLineToPoint(path, NULL, CGRectGetMidX(rect), CGRectGetMidY(rect));
-	CGPathAddLineToPoint(path, NULL, CGRectGetMaxX(rect), CGRectGetMaxY(rect));
-	CGContextAddPath(context, path);
-	UIColor *bottomColor = [UIColor colorWithHue:baseHue saturation:baseSaturation brightness:(baseBrightness - 0.4) alpha:1];
-	CGContextSetFillColorWithColor(context, [bottomColor CGColor]);
-	CGContextFillPath(context);
-	
-	
-	CGFloat inset = rect.size.width / 8.0;
-	CGRect centerRect = UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(inset, inset, inset, inset));
-	CGContextSetFillColorWithColor(context, [baseColor CGColor]);
-	CGContextFillRect(context, centerRect);
 }
 
 @end

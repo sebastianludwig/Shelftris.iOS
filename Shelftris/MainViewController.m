@@ -9,15 +9,16 @@
 #import "MainViewController.h"
 
 #import "Brick.h"
+#import "Shelf.h"
 
 @implementation MainViewController
 {
 	NSMutableArray* bricks;
+	Shelf *shelf;
 	
 	IBOutlet HuePicker *huePicker;
 	IBOutlet UIScrollView *brickScrollView;
-	
-	IBOutlet UILongPressGestureRecognizer* longPressGuestureRecognizer;
+	IBOutlet UIView *shelfContainer;
 }
 
 - (void)viewDidLoad
@@ -37,7 +38,8 @@
 	[self addBrickWithShape:BrickShapeT];
 	brickScrollView.contentOffset = CGPointMake([bricks[0] size].width, 0);
 	
-	self.view.backgroundColor = [UIColor blackColor];
+	shelf = [[Shelf alloc] initWithFrame:shelfContainer.bounds columns:2 rows:4];
+	[shelfContainer addSubview:shelf];
 }
 
 - (Brick *)addBrickWithShape:(BrickShape)shape
@@ -84,6 +86,11 @@
 	if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
 		Brick* pickedBrick = bricks[[self currentBrickIndex]];
 		[bricks removeObject:pickedBrick];
+		for (UIGestureRecognizer *recognizer in pickedBrick.gestureRecognizers) {
+			if (recognizer != gestureRecognizer) {
+				[pickedBrick removeGestureRecognizer:recognizer];
+			}
+		}
 		
 		Brick* replacementBrick = [self addBrickWithShape:pickedBrick.shape origin:pickedBrick.frame.origin];
 		replacementBrick.hidden = YES;
@@ -91,16 +98,14 @@
 		pickedBrick.frame = brickScrollView.frame;
 		[self.view addSubview:pickedBrick];
 		
-		CGFloat squareSize = 20;	// TODO get this from Shelf view
-		
 		[UIView animateWithDuration:0.5
 							  delay:0
 							options:UIViewAnimationOptionCurveEaseInOut
 						 animations:^{
 							 CGPoint center = [gestureRecognizer locationInView:self.view];
 							 CGRect frame = pickedBrick.frame;
-							 frame.size.width = squareSize * 4;
-							 frame.size.height = squareSize * 4;
+							 frame.size.width = (shelf.squareSize - 2 * shelf.gridWidth) * 4;
+							 frame.size.height = (shelf.squareSize - 2 * shelf.gridWidth) * 4;
 							 frame.origin.x = center.x - frame.size.width / 2;
 							 frame.origin.y = center.y - frame.size.height / 2;
 							 pickedBrick.frame = frame;
@@ -115,10 +120,6 @@
 			brick.hidden = NO;
 		}
 		//[gestureRecognizer.view removeFromSuperview];
-	}
-	
-	if (longPressGuestureRecognizer.state != UIGestureRecognizerStateBegan) {
-		return;
 	}
 }
 

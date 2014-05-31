@@ -46,7 +46,6 @@
 {
 	[super drawRect:rect];
 	
-	
 	CGRect frame = UIEdgeInsetsInsetRect(self.bounds, self.insets);
 	
 	CGFloat maxRadius = -1 + MIN(frame.size.width, frame.size.height) / 2;
@@ -125,6 +124,7 @@
 
 - (void)setupView
 {
+	self.backgroundColor = [UIColor clearColor];
 	self.rotationAngle = 0;
 	self.brightness = 1;
 	
