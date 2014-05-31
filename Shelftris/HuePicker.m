@@ -9,7 +9,6 @@
 #import "HuePicker.h"
 
 #import <QuartzCore/QuartzCore.h>
-#import "UIColor+Additions.h"
 #import "SpinGestureRecognizer.h"
 
 #define M_PI_3    M_PI/3
@@ -25,6 +24,9 @@
 	CGFloat gradientStartAngle;
 	CGFloat gradientEndAngle;
 	NSArray *gradientColors;
+	
+	CGFloat brightness;
+	CGFloat saturation;
 }
 
 #pragma mark -
@@ -98,26 +100,34 @@
 
 - (UIColor *)color
 {
-	return [UIColor colorWithHue:self.hue saturation:1 brightness:self.brightness alpha:1];
+	return [UIColor colorWithHue:self.hue saturation:saturation brightness:brightness alpha:1];
 }
 
 - (void)setColor:(UIColor *)color
 {
-	CGFloat hue, brightness;
-	BOOL success = [color getHue:&hue saturation:nil brightness:&brightness alpha:nil];
+	CGFloat hue, newBrightness, newSaturation;
+	BOOL success = [color getHue:&hue saturation:&newSaturation brightness:&newBrightness alpha:nil];
 	
 	if (!success) {
 		return;
 	}
 	
 	self.hue = hue;
-	self.brightness = brightness;
+	saturation = newSaturation;
+	brightness = newBrightness;
 }
 
-- (void)setBrightness:(CGFloat)brightness
+- (void)setHue:(CGFloat)hue
 {
-	_brightness = brightness;
+	_rotationAngle = -hue * 2 * M_PI;
 	[self setNeedsDisplay];
+}
+
+- (CGFloat)hue
+{
+	CGFloat modAngle = fmodf(-self.rotationAngle, 2 * M_PI);
+	modAngle = fmodf(modAngle + 2 * M_PI, 2 * M_PI);
+	return modAngle / (2 * M_PI);
 }
 
 #pragma mark private methods
@@ -126,7 +136,8 @@
 {
 	self.backgroundColor = [UIColor clearColor];
 	self.rotationAngle = 0;
-	self.brightness = 1;
+	brightness = 1;
+	saturation = 1;
 	
 	gradientStartAngle = -M_PI_2;
 	gradientEndAngle = 2 * M_PI - M_PI_2;
@@ -151,22 +162,9 @@
 	[self.delegate huePicker:self didSelectHue:self.hue];
 }
 
-- (void)setHue:(CGFloat)hue
-{
-	self.rotationAngle = -hue * 2 * M_PI;
-	[self setNeedsDisplay];
-}
-
-- (CGFloat)hue
-{
-	CGFloat modAngle = fmodf(-self.rotationAngle, 2 * M_PI);
-	modAngle = fmodf(modAngle + 2 * M_PI, 2 * M_PI);
-	return modAngle / (2 * M_PI);
-}
-
 #pragma mark gradient drawing
 
-- (UIColor *)interpolateFromColor:(UIColor *)startColor to:(UIColor *)endColor at:(CGFloat)percent
+- (UIColor *)interpolateHueFromColor:(UIColor *)startColor to:(UIColor *)endColor at:(CGFloat)percent
 {
 	CGFloat startHue, endHue;
 	if (![startColor getHue:&startHue saturation:nil brightness:nil alpha:nil]) {
@@ -177,16 +175,13 @@
 	}
 	CGFloat interpolatedHue = startHue + ((endHue - startHue) * percent);
 	
-	return [UIColor colorWithHue:interpolatedHue saturation:1 brightness:self.brightness alpha:1];
+	return [UIColor colorWithHue:interpolatedHue saturation:saturation brightness:brightness alpha:1];
 }
 
 - (void)drawGradientWithCenter:(CGPoint)center radius:(CGFloat)radius context:(CGContextRef)context
 {
 	CGContextSetAllowsAntialiasing(context, false);
-	
-	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-	CGContextSetFillColorSpace(context, colorSpace);
-	
+		
 	UIColor *startColor = gradientColors[0];
 	CGFloat positionStartAngle = gradientStartAngle;
 	CGPoint prev =  CGPointMake(center.x + cosf(positionStartAngle) * radius, center.y + sinf(positionStartAngle) * radius);
@@ -205,7 +200,7 @@
 			
 			CGFloat progress = (angle - positionStartAngle) / (positionEndAngle - positionStartAngle);
 
-			UIColor* interpolatedColor = [self interpolateFromColor:startColor to:endColor at:progress];
+			UIColor* interpolatedColor = [self interpolateHueFromColor:startColor to:endColor at:progress];
 			CGContextSetFillColorWithColor(context, interpolatedColor.CGColor);
 			CGContextSetStrokeColorWithColor(context, interpolatedColor.CGColor);
 			
@@ -229,8 +224,6 @@
 	part[2] = dest;
 	CGContextAddLines(context, part, 3);
 	CGContextFillPath(context);
-	
-	CGColorSpaceRelease(colorSpace);
 	
 	CGContextSetAllowsAntialiasing(context, true);
 }

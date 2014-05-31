@@ -17,6 +17,8 @@
 	Shelf *shelf;
 	
 	IBOutlet HuePicker *huePicker;
+	IBOutlet GradientPicker *saturationPicker;
+	IBOutlet GradientPicker *brightnessPicker;
 	IBOutlet UIScrollView *brickScrollView;
 	IBOutlet UIView *shelfContainer;
 }
@@ -28,6 +30,8 @@
 	huePicker.donutThickness = 30;
 	huePicker.color = [UIColor blueColor];
 	huePicker.delegate = self;
+	
+	[self updateColoredViews];
 	
 	brickScrollView.contentSize = CGSizeMake(0, 0);
 	bricks = [[NSMutableArray alloc] init];
@@ -73,6 +77,23 @@
 	return brick;
 }
 
+- (void)updateColoredViews
+{
+	CGFloat hue = huePicker.hue;
+	CGFloat saturation = saturationPicker.value;
+	CGFloat brightness = brightnessPicker.value;
+	
+	huePicker.color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
+	[saturationPicker setStartColor:[UIColor colorWithHue:hue saturation:0 brightness:brightness alpha:1]
+						   endColor:[UIColor colorWithHue:hue saturation:1 brightness:brightness alpha:1]];
+	[brightnessPicker setStartColor:[UIColor colorWithHue:hue saturation:saturation brightness:0 alpha:1]
+						   endColor:[UIColor colorWithHue:hue saturation:saturation brightness:1 alpha:1]];
+	
+	for (Brick* brick in bricks) {
+		brick.color = huePicker.color;
+	}
+}
+
 - (int)currentBrickIndex
 {
 	return brickScrollView.contentOffset.x / brickScrollView.frame.size.width;
@@ -106,7 +127,7 @@
 		
 		Brick* replacementBrick = [self addBrickWithShape:pickedBrick.shape origin:pickedBrick.frame.origin];
 		replacementBrick.rotation = pickedBrick.rotation;
-		replacementBrick.hidden = YES;
+		replacementBrick.alpha = 0;
 		
 		pickedBrick.frame = brickScrollView.frame;
 		[self.view addSubview:pickedBrick];
@@ -132,9 +153,17 @@
 		if ([shelf dropBrick:(Brick *)gestureRecognizer.view]) {
 			[gestureRecognizer.view removeFromSuperview];
 			
-			for (Brick *brick in bricks) {
-				brick.hidden = NO;
-			}
+			[UIView animateWithDuration:0.3
+								  delay:0
+								options:UIViewAnimationOptionCurveLinear
+							 animations:^{
+								 for (Brick *brick in bricks) {
+									 brick.alpha = 1;
+								 }
+							 }
+							 completion:^(BOOL finished) {
+							 }];
+			
 		} else {
 			[UIView animateWithDuration:0.3
 								  delay:0
@@ -146,7 +175,7 @@
 								 [gestureRecognizer.view removeFromSuperview];
 								 
 								 for (Brick *brick in bricks) {
-									 brick.hidden = NO;
+									 brick.alpha = 1;
 								 }
 							 }];
 		}
@@ -158,9 +187,15 @@
 
 - (void)huePicker:(HuePicker *)view didSelectHue:(CGFloat)hue
 {
-	for (Brick* brick in bricks) {
-		brick.color = view.color;
-	}
+	[self updateColoredViews];
+}
+
+#pragma mark -
+#pragma mark GradientPickerDelegate
+
+- (void)gradientPicker:(GradientPicker *)view didSelectValue:(CGFloat)value
+{
+	[self updateColoredViews];
 }
 
 #pragma mark -

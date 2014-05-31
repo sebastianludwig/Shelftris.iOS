@@ -79,7 +79,7 @@
 				float dX = shelfSquare.frame.origin.x - brickSquareOrigin.x;
 				float dY = shelfSquare.frame.origin.y - brickSquareOrigin.y;
 				float distanceSquare = dX * dX + dY * dY;
-				if (distanceSquare < 100) {
+				if (distanceSquare < 200) {
 					shelfSquare.baseColor = [brick.color colorWithAlphaComponent:inactiveSquareAlpha];
 					couldPlaceSquare = YES;
 				}

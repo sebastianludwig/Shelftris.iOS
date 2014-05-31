@@ -19,8 +19,8 @@
 @property (nonatomic, weak) id<HuePickerDelegate> delegate;
 
 @property UIEdgeInsets insets;
-@property (nonatomic) UIColor *color;
-@property (nonatomic) CGFloat brightness;
 @property (nonatomic) CGFloat donutThickness;
+@property (nonatomic) UIColor *color;
+@property (nonatomic) CGFloat hue;
 
 @end

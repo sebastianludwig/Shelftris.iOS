@@ -7,7 +7,8 @@
 //
 
 #import "HuePicker.h"
+#import "GradientPicker.h"
 
-@interface MainViewController : UIViewController<HuePickerDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
+@interface MainViewController : UIViewController<HuePickerDelegate, GradientPickerDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @end

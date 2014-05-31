@@ -47,7 +47,7 @@
 	[self.borderColor setStroke];
 	CGContextStrokeRectWithWidth(context, self.bounds, 2 * self.borderWidth);
 	
-	CGRect squareRect = UIEdgeInsetsInsetRect(self.bounds, UIEdgeInsetsMake(self.borderWidth, self.borderWidth, self.borderWidth, self.borderWidth));
+	CGRect squareRect = CGRectInset(self.bounds, self.borderWidth, self.borderWidth);
 	[Square drawSqureInRect:squareRect withBaseColor:self.baseColor inContext:context];
 }
 
@@ -61,7 +61,7 @@
 	rect = CGRectIntegral(rect);
 	
 	CGFloat inset = rect.size.width / 8.0;
-	CGRect centerRect = UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(inset, inset, inset, inset));
+	CGRect centerRect = CGRectInset(rect, inset, inset);
 	centerRect = CGRectIntegral(centerRect);
 		
 	CGContextFillRect(context, rect);
