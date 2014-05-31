@@ -80,7 +80,6 @@
 				float dY = shelfSquare.frame.origin.y - brickSquareOrigin.y;
 				float distanceSquare = dX * dX + dY * dY;
 				if (distanceSquare < 100) {
-					NSLog(@"setting color for %@", shelfSquare);
 					shelfSquare.baseColor = [brick.color colorWithAlphaComponent:inactiveSquareAlpha];
 					couldPlaceSquare = YES;
 				}
