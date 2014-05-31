@@ -9,7 +9,6 @@
 #import "MainViewController.h"
 
 #import "Brick.h"
-#import "Shelf.h"
 
 @implementation MainViewController
 {
@@ -193,9 +192,16 @@
 #pragma mark -
 #pragma mark GradientPickerDelegate
 
-- (void)gradientPicker:(GradientPicker *)view didSelectValue:(CGFloat)value
+- (void)gradientPicker:(GradientPicker *)gradientPicker didSelectValue:(CGFloat)value
 {
 	[self updateColoredViews];
+}
+
+#pragma mark -
+#pragma mark ShelfDelegate
+
+- (void)shelfDidChangeCellActivity:(Shelf *)view
+{
 }
 
 #pragma mark -

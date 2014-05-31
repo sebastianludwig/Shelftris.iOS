@@ -92,7 +92,8 @@
 	[[UIColor whiteColor] setStroke];
 	CGRect indicatorRect = CGRectMake(0, (1 - _value) * self.bounds.size.height, self.bounds.size.width, indicatorHeight);
 	indicatorRect = CGRectInset(indicatorRect, indicatorLineWidth / 2, indicatorLineWidth / 2);
-	indicatorRect.origin.y = MAX(0, MIN(self.bounds.size.height - indicatorRect.size.height - indicatorLineWidth / 2, indicatorRect.origin.y));
+	indicatorRect.origin.y -= indicatorHeight / 2 + indicatorLineWidth;
+	indicatorRect.origin.y = MAX(indicatorLineWidth / 2, MIN(self.bounds.size.height - indicatorRect.size.height - indicatorLineWidth / 2, indicatorRect.origin.y));
 	indicatorRect = CGRectIntegral(indicatorRect);
 	UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:indicatorRect cornerRadius:4];
 	roundedRect.lineWidth = indicatorLineWidth;

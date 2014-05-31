@@ -61,6 +61,10 @@
 		UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
 		[self addGestureRecognizer:tapRecognizer];
 		
+		UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDoubleTap:)];
+		doubleTapRecognizer.numberOfTapsRequired = 2;
+		[self addGestureRecognizer:doubleTapRecognizer];
+		
 		UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
 		[self addGestureRecognizer:panRecognizer];
     }
@@ -83,6 +87,8 @@
 					shelfSquare.baseColor = [brick.color colorWithAlphaComponent:inactiveSquareAlpha];
 					couldPlaceSquare = YES;
 				}
+				
+				[self setCellInColumn:column row:row active:NO];
 			}
 		}
 	}
@@ -90,9 +96,22 @@
 	return couldPlaceSquare;
 }
 
+- (BOOL)hasActiveCells
+{
+	// HINT after activeCells (NSArray of CGPoints) has been implemented, only check if the result is empty
+	for (int column = 0; column < [activeStatus count]; ++column) {
+		for (int row = 0; row < [activeStatus[0] count]; ++row) {
+			if ([activeStatus[column][row] boolValue]) {
+				return YES;
+			}
+		}
+	}
+	return NO;
+}
+
 #pragma mark Gesture recognition / de-/activation
 
-- (void)setSquareInColumn:(int)column row:(int)row active:(BOOL)active
+- (void)setCellInColumn:(int)column row:(int)row active:(BOOL)active
 {
 	Square *square = squares[column][row];
 	if (active) {
@@ -136,16 +155,19 @@
 	int column, row;
 	Square *square = [self squareAtPoint:tapLocation column:&column row:&row];
 	
-	if (!square) {
-		for (int column = 0; column < [squares count]; ++column) {
-			for (int row = 0; row < [squares[0] count]; ++row) {
-				[self setSquareInColumn:column row:row active:NO];
-			}
-		}
-		return;
+	if (square) {
+		[self setCellInColumn:column row:row active:![activeStatus[column][row] boolValue]];
 	}
-	
-	[self setSquareInColumn:column row:row active:![activeStatus[column][row] boolValue]];
+}
+
+- (void)onDoubleTap:(UITapGestureRecognizer *)tapRecognizer
+{
+	BOOL activate = ![self hasActiveCells];
+	for (int column = 0; column < [squares count]; ++column) {
+		for (int row = 0; row < [squares[0] count]; ++row) {
+			[self setCellInColumn:column row:row active:activate];
+		}
+	}
 }
 
 - (void)onPan:(UIPanGestureRecognizer *)panRecognizer
@@ -160,11 +182,11 @@
 			panActivation = NO;
 		} else {
 			panActivation = ![activeStatus[column][row] boolValue];
-			[self setSquareInColumn:column row:row active:panActivation];
+			[self setCellInColumn:column row:row active:panActivation];
 		}
 	} else if (panRecognizer.state == UIGestureRecognizerStateChanged) {
 		if (square) {
-			[self setSquareInColumn:column row:row active:panActivation];
+			[self setCellInColumn:column row:row active:panActivation];
 		}
 	}
 }

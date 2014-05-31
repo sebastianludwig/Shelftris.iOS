@@ -10,7 +10,7 @@
 
 @protocol GradientPickerDelegate <NSObject>
 
-- (void)gradientPicker:(GradientPicker *)view didSelectValue:(CGFloat)value;
+- (void)gradientPicker:(GradientPicker *)gradientPicker didSelectValue:(CGFloat)value;
 
 @end
 

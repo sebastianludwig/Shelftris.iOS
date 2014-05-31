@@ -8,7 +8,8 @@
 
 #import "HuePicker.h"
 #import "GradientPicker.h"
+#import "Shelf.h"
 
-@interface MainViewController : UIViewController<HuePickerDelegate, GradientPickerDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
+@interface MainViewController : UIViewController<HuePickerDelegate, GradientPickerDelegate, ShelfDelegate, UIScrollViewDelegate>
 
 @end

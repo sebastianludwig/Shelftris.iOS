@@ -10,7 +10,7 @@
 
 @protocol HuePickerDelegate <NSObject>
 
-- (void)huePicker:(HuePicker *)view didSelectHue:(CGFloat)hue;
+- (void)huePicker:(HuePicker *)huePicker didSelectHue:(CGFloat)hue;
 
 @end
 
