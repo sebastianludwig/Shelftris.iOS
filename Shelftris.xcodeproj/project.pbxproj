@@ -28,6 +28,7 @@
 		9E69F3AA1935C8FD0060AC26 /* Shelf.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E69F3A91935C8FD0060AC26 /* Shelf.m */; };
 		9E69F3AD1935DC440060AC26 /* Square.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E69F3AC1935DC440060AC26 /* Square.m */; };
 		9ECC8A99193A62CA00A961D8 /* GradientPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECC8A98193A62CA00A961D8 /* GradientPicker.m */; };
+		9EE0042E1940663A00A9FBCC /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0042D1940663A00A9FBCC /* Client.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		9E69F3AC1935DC440060AC26 /* Square.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Square.m; sourceTree = "<group>"; };
 		9ECC8A97193A62CA00A961D8 /* GradientPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientPicker.h; sourceTree = "<group>"; };
 		9ECC8A98193A62CA00A961D8 /* GradientPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientPicker.m; sourceTree = "<group>"; };
+		9EE0042C1940663A00A9FBCC /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
+		9EE0042D1940663A00A9FBCC /* Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +147,8 @@
 				9ECC8A98193A62CA00A961D8 /* GradientPicker.m */,
 				9E69F3A81935C8FD0060AC26 /* Shelf.h */,
 				9E69F3A91935C8FD0060AC26 /* Shelf.m */,
+				9EE0042C1940663A00A9FBCC /* Client.h */,
+				9EE0042D1940663A00A9FBCC /* Client.m */,
 				9E69F3A21933AC500060AC26 /* SpinGestureRecognizer.h */,
 				9E69F3A31933AC500060AC26 /* SpinGestureRecognizer.m */,
 				9E69F38E193397EF0060AC26 /* MainViewController.h */,
@@ -286,6 +291,7 @@
 				9E69F370193397AA0060AC26 /* AppDelegate.m in Sources */,
 				9E69F3A7193499870060AC26 /* Brick.m in Sources */,
 				9E69F391193397EF0060AC26 /* MainViewController.m in Sources */,
+				9EE0042E1940663A00A9FBCC /* Client.m in Sources */,
 				9E69F3AA1935C8FD0060AC26 /* Shelf.m in Sources */,
 				9ECC8A99193A62CA00A961D8 /* GradientPicker.m in Sources */,
 				9E69F36C193397AA0060AC26 /* main.m in Sources */,

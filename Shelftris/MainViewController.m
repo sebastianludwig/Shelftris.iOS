@@ -9,11 +9,13 @@
 #import "MainViewController.h"
 
 #import "Brick.h"
+#import "Client.h"
 
 @implementation MainViewController
 {
 	NSMutableArray* bricks;
 	Shelf *shelf;
+	Client *client;
 	
 	IBOutlet HuePicker *huePicker;
 	IBOutlet GradientPicker *saturationPicker;
@@ -43,6 +45,8 @@
 	
 	shelf = [[Shelf alloc] initWithFrame:shelfContainer.bounds columns:2 rows:4];
 	[shelfContainer addSubview:shelf];
+	
+	client = [[Client alloc] init];
 }
 
 - (Brick *)addBrickWithShape:(BrickShape)shape
@@ -149,7 +153,9 @@
 		CGPoint location = [gestureRecognizer locationInView:self.view];
 		gestureRecognizer.view.center = location;
 	} else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-		if ([shelf dropBrick:(Brick *)gestureRecognizer.view]) {
+        Brick *brick = (Brick *)gestureRecognizer.view;
+		if ([shelf dropBrick:brick]) {
+            [client addBrickAsync:brick origin:CGPointMake(0, 0)];  // TODO: calculate point properly
 			[gestureRecognizer.view removeFromSuperview];
 			
 			[UIView animateWithDuration:0.3
@@ -187,6 +193,9 @@
 - (void)huePicker:(HuePicker *)view didSelectHue:(CGFloat)hue
 {
 	[self updateColoredViews];
+	if (shelf.hasActiveCells) {
+		[client setHueAsync:huePicker.hue cells:shelf.activeCells];
+	}
 }
 
 #pragma mark -
@@ -195,6 +204,15 @@
 - (void)gradientPicker:(GradientPicker *)gradientPicker didSelectValue:(CGFloat)value
 {
 	[self updateColoredViews];
+	
+	if (shelf.hasActiveCells) {
+		if (gradientPicker == saturationPicker) {
+			[client setSaturationAsync:saturationPicker.value cells:shelf.activeCells];
+		}
+		if (gradientPicker == brightnessPicker) {
+			[client setSaturationAsync:brightnessPicker.value cells:shelf.activeCells];
+		}
+	}
 }
 
 #pragma mark -

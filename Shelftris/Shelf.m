@@ -96,17 +96,22 @@
 	return couldPlaceSquare;
 }
 
-- (BOOL)hasActiveCells
+- (NSArray *)activeCells
 {
-	// HINT after activeCells (NSArray of CGPoints) has been implemented, only check if the result is empty
+	NSMutableArray *activeCells = [NSMutableArray array];
 	for (int column = 0; column < [activeStatus count]; ++column) {
 		for (int row = 0; row < [activeStatus[0] count]; ++row) {
 			if ([activeStatus[column][row] boolValue]) {
-				return YES;
+				[activeCells addObject:[NSValue valueWithCGPoint:CGPointMake(column, row)]];
 			}
 		}
 	}
-	return NO;
+	return activeCells;
+}
+
+- (BOOL)hasActiveCells
+{
+    return [self activeCells].count > 0;
 }
 
 #pragma mark Gesture recognition / de-/activation

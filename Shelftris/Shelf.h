@@ -10,14 +10,14 @@
 
 @class Shelf;
 
-@protocol ShelfDelegate <NSObject>
+@protocol ShelfDelegate <NSObject>      // TODO: move down
 
 - (void)shelfDidChangeCellActivity:(Shelf *)shelf;
 
 @end
 
 
-@interface Shelf : UIView
+@interface Shelf: UIView       // TODO: rename to ShelfView
 
 @property (nonatomic, weak) IBOutlet id<ShelfDelegate> delegate;
 
@@ -28,6 +28,7 @@
 
 - (BOOL)dropBrick:(Brick *)brick;
 
+- (NSArray *)activeCells;	// NSArray of CGPoint
 - (BOOL)hasActiveCells;
 
 @end
