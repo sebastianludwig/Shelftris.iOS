@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E20F2661BA59CD300E721A2 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E20F2651BA59CD300E721A2 /* Position.m */; };
 		9E69F360193397AA0060AC26 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E69F35F193397AA0060AC26 /* Foundation.framework */; };
 		9E69F362193397AA0060AC26 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E69F361193397AA0060AC26 /* CoreGraphics.framework */; };
 		9E69F364193397AA0060AC26 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E69F363193397AA0060AC26 /* UIKit.framework */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E20F2621BA5996600E721A2 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
+		9E20F2651BA59CD300E721A2 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
 		9E69F35C193397AA0060AC26 /* Shelftris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shelftris.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E69F35F193397AA0060AC26 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9E69F361193397AA0060AC26 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -137,6 +140,8 @@
 		9E69F365193397AA0060AC26 /* Shelftris */ = {
 			isa = PBXGroup;
 			children = (
+				9E20F2621BA5996600E721A2 /* Position.h */,
+				9E20F2651BA59CD300E721A2 /* Position.m */,
 				9E69F3A5193499870060AC26 /* Brick.h */,
 				9E69F3A6193499870060AC26 /* Brick.m */,
 				9E69F3AB1935DC440060AC26 /* Square.h */,
@@ -296,6 +301,7 @@
 				9ECC8A99193A62CA00A961D8 /* GradientPicker.m in Sources */,
 				9E69F36C193397AA0060AC26 /* main.m in Sources */,
 				9E69F395193398BE0060AC26 /* HuePicker.m in Sources */,
+				9E20F2661BA59CD300E721A2 /* Position.m in Sources */,
 				9E69F3A41933AC500060AC26 /* SpinGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -154,8 +154,9 @@
 		gestureRecognizer.view.center = location;
 	} else if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
         Brick *brick = (Brick *)gestureRecognizer.view;
-		if ([shelf dropBrick:brick]) {
-            [client addBrickAsync:brick origin:CGPointMake(0, 0)];  // TODO: calculate point properly
+        Position origin = [shelf dropBrick:brick];
+		if (origin.x != NSNotFound) {
+            [client addBrickAsync:brick origin:origin];
 			[gestureRecognizer.view removeFromSuperview];
 			
 			[UIView animateWithDuration:0.3

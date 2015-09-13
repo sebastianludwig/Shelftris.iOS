@@ -7,6 +7,7 @@
 //
 
 #import "Brick.h"
+#import "Position.h"
 
 @interface Client : NSObject
 
@@ -14,7 +15,7 @@
 - (void)setSaturationAsync:(float)hue cells:(NSArray *)cells;
 - (void)setBrightnessAsync:(float)hue cells:(NSArray *)cells;
 
-- (void)addBrickAsync:(Brick *)brick origin:(CGPoint)origin;
+- (void)addBrickAsync:(Brick *)brick origin:(Position)origin;
 
 - (void)clearAsync;
 

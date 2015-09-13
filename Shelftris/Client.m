@@ -43,7 +43,7 @@
 	[self sendCommandAsync:command];
 }
 
-- (void)addBrickAsync:(Brick *)brick origin:(CGPoint)origin
+- (void)addBrickAsync:(Brick *)brick origin:(Position)origin
 {
     // TODO: add color and rotation
 	NSMutableDictionary *command = [@{
@@ -72,12 +72,12 @@
 {
 	NSMutableArray *serializedCells = [[NSMutableArray alloc] initWithCapacity:cells.count];
 	for (NSValue *value in cells) {
-		[serializedCells addObject:[self serializePoint:[value CGPointValue]]];
+		[serializedCells addObject:[self serializePoint:[value positionValue]]];
 	}
 	return serializedCells;
 }
 
-- (NSDictionary *)serializePoint:(CGPoint)point
+- (NSDictionary *)serializePoint:(Position)point
 {
 	return @{@"x": @(point.x), @"y": @(point.y)};
 }
@@ -114,8 +114,6 @@
                                    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
                                    if (httpResponse.statusCode != 200) {
                                        NSLog(@"Failed with status code %ld", httpResponse.statusCode);
-                                   } else {
-                                       NSLog(@"yeeeha");
                                    }
                                }
                            }];

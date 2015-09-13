@@ -7,6 +7,7 @@
 //
 
 #import "Brick.h"
+#import "Position.h"
 
 @class Shelf;
 
@@ -26,9 +27,9 @@
 
 - (id)initWithFrame:(CGRect)frame columns:(int)columns rows:(int)rows;
 
-- (BOOL)dropBrick:(Brick *)brick;
+- (Position)dropBrick:(Brick *)brick;
 
-- (NSArray *)activeCells;	// NSArray of CGPoint
+- (NSArray *)activeCells;	// NSArray of Position
 - (BOOL)hasActiveCells;
 
 @end

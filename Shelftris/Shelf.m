@@ -8,6 +8,7 @@
 
 #import "Shelf.h"
 #import "Square.h"
+#import "Position.h"
 
 @implementation Shelf
 {
@@ -71,18 +72,22 @@
     return self;
 }
 
-- (BOOL)dropBrick:(Brick *)brick
+- (Position)dropBrick:(Brick *)brick
 {
 	BOOL couldPlaceSquare = NO;
+    CGPoint brickOrigin = CGPointMake(CGFLOAT_MAX, CGFLOAT_MAX);
 	for (NSValue *originWrapper in [brick squareOriginsInView:self]) {
 		CGPoint brickSquareOrigin = [originWrapper CGPointValue];
 		
+        brickOrigin.x = MIN(brickOrigin.x, brickSquareOrigin.x);
+        brickOrigin.y = MIN(brickOrigin.y, brickSquareOrigin.y);
+        
 		for (int column = 0; column < [squares count]; ++column) {
 			for (int row = 0; row < [squares[0] count]; ++row) {
 				Square *shelfSquare = squares[column][row];
-				float dX = shelfSquare.frame.origin.x - brickSquareOrigin.x;
-				float dY = shelfSquare.frame.origin.y - brickSquareOrigin.y;
-				float distanceSquare = dX * dX + dY * dY;
+				CGFloat dX = shelfSquare.frame.origin.x - brickSquareOrigin.x;
+				CGFloat dY = shelfSquare.frame.origin.y - brickSquareOrigin.y;
+				CGFloat distanceSquare = dX * dX + dY * dY;
 				if (distanceSquare < 200) {
 					shelfSquare.baseColor = [brick.color colorWithAlphaComponent:inactiveSquareAlpha];
 					couldPlaceSquare = YES;
@@ -92,8 +97,21 @@
 			}
 		}
 	}
+    
+    if (!couldPlaceSquare) {
+        return PositionMake(NSNotFound, NSNotFound);
+    }
+    
+    Square *topLeftSquare = squares[0][0];
 	
-	return couldPlaceSquare;
+    CGFloat dX = brickOrigin.x - topLeftSquare.frame.origin.x;
+    CGFloat dY = brickOrigin.y - topLeftSquare.frame.origin.y;
+    
+    Position origin;
+    origin.x = round(dX / topLeftSquare.frame.size.width);
+    origin.y = round(dY / topLeftSquare.frame.size.height);
+    
+	return origin;
 }
 
 - (NSArray *)activeCells
@@ -102,7 +120,7 @@
 	for (int column = 0; column < [activeStatus count]; ++column) {
 		for (int row = 0; row < [activeStatus[0] count]; ++row) {
 			if ([activeStatus[column][row] boolValue]) {
-				[activeCells addObject:[NSValue valueWithCGPoint:CGPointMake(column, row)]];
+				[activeCells addObject:[NSValue valueWithPosition:PositionMake(column, row)]];
 			}
 		}
 	}
@@ -125,7 +143,7 @@
 		[self bringSubviewToFront:square];
 	} else {
 		[square setBorderColor:inactiveBorderColor];
-		square.baseColor = [square.baseColor colorWithAlphaComponent:inactiveSquareAlpha];
+		square.baseColor = [square.baseColor colorWithAlphaComponent:1];
 		[self sendSubviewToBack:square];
 	}
 	activeStatus[column][row] = @(active);
