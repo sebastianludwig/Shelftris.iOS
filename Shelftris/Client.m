@@ -45,12 +45,12 @@
 
 - (void)addBrickAsync:(Brick *)brick origin:(Position)origin
 {
-    // TODO: add color and rotation
-	NSMutableDictionary *command = [@{
-									 @"action": @"add_brick",
-									 @"origin": [self serializePoint:origin],
-                                     @"shape": [self serializeShape:brick.shape]
-									 } mutableCopy];
+	NSDictionary *command = @{
+                               @"action": @"add_brick",
+                               @"origin": [self serializePoint:origin],
+                               @"shape": [self serializeShape:brick.shape],
+                               @"color": [self serializeColor:brick.color]
+                               };
 	[self sendCommandAsync:command];
 }
 
@@ -80,6 +80,17 @@
 - (NSDictionary *)serializePoint:(Position)point
 {
 	return @{@"x": @(point.x), @"y": @(point.y)};
+}
+
+- (NSDictionary *)serializeColor:(UIColor *)color
+{
+    CGFloat hue;
+    CGFloat saturation;
+    CGFloat brightness;
+    CGFloat alpha;
+    
+    [color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
+    return @{@"hue": @(hue), @"saturation": @(saturation), @"brightness": @(brightness)};
 }
 
 - (NSString *)serializeShape:(BrickShape)shape
