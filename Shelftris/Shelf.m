@@ -72,9 +72,20 @@
     return self;
 }
 
+- (void)clear
+{
+    for (int column = 0; column < [squares count]; ++column) {
+        for (int row = 0; row < [squares[0] count]; ++row) {
+            Square *square = squares[column][row];
+            square.baseColor = [UIColor clearColor];
+        }
+    }
+}
+
 - (Position)dropBrick:(Brick *)brick
 {
 	BOOL couldPlaceSquare = NO;
+    BOOL cleared = NO;
     CGPoint brickOrigin = CGPointMake(CGFLOAT_MAX, CGFLOAT_MAX);
 	for (NSValue *originWrapper in [brick squareOriginsInView:self]) {
 		CGPoint brickSquareOrigin = [originWrapper CGPointValue];
@@ -89,6 +100,10 @@
 				CGFloat dY = shelfSquare.frame.origin.y - brickSquareOrigin.y;
 				CGFloat distanceSquare = dX * dX + dY * dY;
 				if (distanceSquare < 200) {
+                    if (!cleared) {
+                        [self clear];       // TODO: remove!
+                        cleared = YES;
+                    }
 					shelfSquare.baseColor = [brick.color colorWithAlphaComponent:inactiveSquareAlpha];
 					couldPlaceSquare = YES;
 				}
