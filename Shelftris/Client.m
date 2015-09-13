@@ -125,7 +125,7 @@
                                } else if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
                                    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*)response;
                                    if (httpResponse.statusCode != 200) {
-                                       NSLog(@"Failed with status code %ld", httpResponse.statusCode);
+                                       NSLog(@"Failed with status code %ld", (long)httpResponse.statusCode);
                                    }
                                }
                            }];
