@@ -49,7 +49,8 @@
                                @"action": @"add_brick",
                                @"origin": [self serializePoint:origin],
                                @"shape": [self serializeShape:brick.shape],
-                               @"color": [self serializeColor:brick.color]
+                               @"color": [self serializeColor:brick.color],
+                               @"rotation": @(brick.rotation)
                                };
 	[self sendCommandAsync:command];
 }
