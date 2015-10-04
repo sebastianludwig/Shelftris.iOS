@@ -8,10 +8,6 @@
 
 @interface SpinGestureRecognizer : UIGestureRecognizer
 
-@property (nonatomic, weak) UIView *spinView;
-
-- (id)initWithSpinView:(UIView*)view target:(id)target action:(SEL)action;
-
 @property (nonatomic, readonly) float angle;
 @property (nonatomic, readonly) float velocity;
 

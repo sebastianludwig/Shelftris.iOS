@@ -77,14 +77,6 @@
 #pragma mark -
 #pragma mark SpinGestureRecognizer
 
-- (id)initWithSpinView:(UIView *)view target:(id)target action:(SEL)action
-{
-	if (self = [super initWithTarget:target action:action]) {
-		self.spinView = view;
-	}
-	return self;
-}
-
 - (float)angle
 {
 	return angle;
@@ -100,11 +92,11 @@
 - (float)angleBetween:(CGPoint)pointA andPoint:(CGPoint)pointB
 {
 	// a = startPoint - spinView.center
-	CGPoint a = CGPointMake(pointA.x - self.spinView.center.x, pointA.y - self.spinView.center.y);
+	CGPoint a = CGPointMake(pointA.x - self.view.center.x, pointA.y - self.view.center.y);
 	
 	// b = currentPoint - spinView.center
 	CGPoint currentPoint = pointB;
-	CGPoint b = CGPointMake(currentPoint.x - self.spinView.center.x, currentPoint.y - self.spinView.center.y);
+	CGPoint b = CGPointMake(currentPoint.x - self.view.center.x, currentPoint.y - self.view.center.y);
 	
 	return atan2(a.x*b.y - a.y*b.x, a.x*b.x + a.y*b.y);
 }

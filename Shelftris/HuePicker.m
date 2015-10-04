@@ -150,7 +150,7 @@
 	self.donutThickness = 50;
 	self.color = [UIColor colorWithHue:0 saturation:1 brightness:1 alpha:1];
 	
-	SpinGestureRecognizer *spinRecognizer = [[SpinGestureRecognizer alloc] initWithSpinView:self target:self action:@selector(handleSpin:)];
+	SpinGestureRecognizer *spinRecognizer = [[SpinGestureRecognizer alloc] initWithTarget:self action:@selector(handleSpin:)];
 	[self addGestureRecognizer:spinRecognizer];
 }
 
