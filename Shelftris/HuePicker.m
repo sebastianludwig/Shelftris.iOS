@@ -119,8 +119,7 @@
 
 - (void)setHue:(CGFloat)hue
 {
-	_rotationAngle = -hue * 2 * M_PI;
-	[self setNeedsDisplay];
+	self.rotationAngle = -hue * 2 * M_PI;
 }
 
 - (CGFloat)hue
@@ -158,8 +157,7 @@
 - (void)setRotationAngle:(CGFloat)rotationAngle
 {
 	_rotationAngle = rotationAngle;
-	[self setNeedsDisplay];
-	[self.delegate huePicker:self didSelectHue:self.hue];
+    self.layer.transform = CATransform3DMakeRotation(_rotationAngle, 0, 0, 1);
 }
 
 #pragma mark gradient drawing
@@ -232,6 +230,7 @@
 
 - (void)handleSpin:(SpinGestureRecognizer *)spinRecognizer {
 	self.rotationAngle += spinRecognizer.angle;
+    [self.delegate huePicker:self didSelectHue:self.hue];
 }
 
 @end
