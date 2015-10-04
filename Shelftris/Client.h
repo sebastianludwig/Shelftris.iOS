@@ -11,6 +11,8 @@
 
 @interface Client : NSObject
 
+- (void)shutdownServer;
+
 - (void)setHueAsync:(float)hue cells:(NSArray *)cells;		// cells = NSArray of CGPoint
 - (void)setSaturationAsync:(float)hue cells:(NSArray *)cells;
 - (void)setBrightnessAsync:(float)hue cells:(NSArray *)cells;

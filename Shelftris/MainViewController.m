@@ -49,6 +49,11 @@
 	client = [[Client alloc] init];
 }
 
+- (IBAction)shutdownServer
+{
+    [client shutdownServer];
+}
+
 - (Brick *)addBrickWithShape:(BrickShape)shape
 {
 	return [self addBrickWithShape:shape origin:CGPointMake(brickScrollView.contentSize.width, 0)];

@@ -10,6 +10,14 @@
 
 @implementation Client
 
+- (void)shutdownServer
+{
+    NSDictionary *command = @{@"action": @"system",
+                              @"command": @"shutdown"
+                              };
+    [self sendCommandAsync:command];
+}
+
 - (void)setHueAsync:(float)hue cells:(NSArray *)cells
 {
 	NSDictionary *command = @{

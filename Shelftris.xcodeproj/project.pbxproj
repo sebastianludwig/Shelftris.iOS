@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9E20F2661BA59CD300E721A2 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E20F2651BA59CD300E721A2 /* Position.m */; };
+		9E2B62F01BC1755F0098C897 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9E2B62EF1BC1755F0098C897 /* FontAwesome.otf */; settings = {ASSET_TAGS = (); }; };
 		9E69F360193397AA0060AC26 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E69F35F193397AA0060AC26 /* Foundation.framework */; };
 		9E69F362193397AA0060AC26 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E69F361193397AA0060AC26 /* CoreGraphics.framework */; };
 		9E69F364193397AA0060AC26 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E69F363193397AA0060AC26 /* UIKit.framework */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		9E20F2621BA5996600E721A2 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
 		9E20F2651BA59CD300E721A2 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
+		9E2B62EF1BC1755F0098C897 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		9E69F35C193397AA0060AC26 /* Shelftris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shelftris.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E69F35F193397AA0060AC26 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9E69F361193397AA0060AC26 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -170,6 +172,7 @@
 		9E69F366193397AA0060AC26 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9E2B62EF1BC1755F0098C897 /* FontAwesome.otf */,
 				9E69F367193397AA0060AC26 /* Shelftris-Info.plist */,
 				9E69F368193397AA0060AC26 /* InfoPlist.strings */,
 				9E69F36B193397AA0060AC26 /* main.m */,
@@ -273,6 +276,7 @@
 			files = (
 				9E69F36A193397AA0060AC26 /* InfoPlist.strings in Resources */,
 				9E69F392193397EF0060AC26 /* MainViewController.xib in Resources */,
+				9E2B62F01BC1755F0098C897 /* FontAwesome.otf in Resources */,
 				9E69F372193397AA0060AC26 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
